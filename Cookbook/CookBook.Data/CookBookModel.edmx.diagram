@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ddf6aa4cb03d46ef8c787085f27fe8f7" Name="Diagram1">
+        <EntityTypeShape EntityType="CookBookModel.Ingredient" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CookBookModel.MealType" Width="1.5" PointX="8.125" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CookBookModel.Recipe" Width="1.5" PointX="3.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CookBookModel.Step" Width="1.5" PointX="6.25" PointY="2.75" IsExpanded="true" />
+        <AssociationConnector Association="CookBookModel.FK_Recipe_Ingredients" ManuallyRouted="false" />
+        <AssociationConnector Association="CookBookModel.FK_Recipe_MealType" ManuallyRouted="false" />
+        <AssociationConnector Association="CookBookModel.FK_Recipe_Steps" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

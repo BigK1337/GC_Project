@@ -145,8 +145,8 @@
           <NavigationProperty Name="Recipes" Relationship="Self.FK_Recipe_Steps" FromRole="Steps" ToRole="Recipe" />
         </EntityType>
         <Association Name="FK_Recipe_Ingredients">
-          <End Role="Ingredients" Type="Self.Ingredient" Multiplicity="1" />
-          <End Role="Recipe" Type="Self.Recipe" Multiplicity="*" />
+          <End Role="Ingredients" Type="Self.Ingredient" Multiplicity="*" />
+          <End Role="Recipe" Type="Self.Recipe" Multiplicity="1" />
           <ReferentialConstraint>
             <Principal Role="Ingredients">
               <PropertyRef Name="ID" />

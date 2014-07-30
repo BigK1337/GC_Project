@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="CookbookModel.Ingredient" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CookbookModel.MealType" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="CookbookModel.Recipe" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="CookbookModel.Step" Width="1.5" PointX="5.625" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CookbookModel.Step" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
         <AssociationConnector Association="CookbookModel.FK_Recipe_Ingredients" ManuallyRouted="false" />
         <AssociationConnector Association="CookbookModel.FK_Recipe_MealType" ManuallyRouted="false" />
         <AssociationConnector Association="CookbookModel.FK_Recipe_Steps" ManuallyRouted="false" />

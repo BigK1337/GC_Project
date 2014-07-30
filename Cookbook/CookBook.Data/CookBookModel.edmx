@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CookBookModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Ingredients">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Info" Type="text" />
+        </EntityType>
+        <EntityType Name="MealType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Recipe">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PrepTime" Type="int" />
+          <Property Name="Serves" Type="int" Nullable="false" />
+          <Property Name="Description" Type="text" />
+          <Property Name="Image" Type="image" />
+          <Property Name="MealTypeID" Type="int" Nullable="false" />
+          <Property Name="IngredientID" Type="int" Nullable="false" />
+          <Property Name="StepID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Steps">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Step" Type="text" Nullable="false" />
+          <Property Name="numStep" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Recipe_Ingredients">
+          <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="1" />
+          <End Role="Recipe" Type="Self.Recipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ingredients">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Recipe">
+              <PropertyRef Name="IngredientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recipe_MealType">
+          <End Role="MealType" Type="Self.MealType" Multiplicity="1" />
+          <End Role="Recipe" Type="Self.Recipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MealType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Recipe">
+              <PropertyRef Name="MealTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recipe_Steps">
+          <End Role="Steps" Type="Self.Steps" Multiplicity="1" />
+          <End Role="Recipe" Type="Self.Recipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Steps">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Recipe">
+              <PropertyRef Name="StepID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CookBookModelStoreContainer">
+          <EntitySet Name="Ingredients" EntityType="Self.Ingredients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MealType" EntityType="Self.MealType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recipe" EntityType="Self.Recipe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Steps" EntityType="Self.Steps" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Recipe_Ingredients" Association="Self.FK_Recipe_Ingredients">
+            <End Role="Ingredients" EntitySet="Ingredients" />
+            <End Role="Recipe" EntitySet="Recipe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recipe_MealType" Association="Self.FK_Recipe_MealType">
+            <End Role="MealType" EntitySet="MealType" />
+            <End Role="Recipe" EntitySet="Recipe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recipe_Steps" Association="Self.FK_Recipe_Steps">
+            <End Role="Steps" EntitySet="Steps" />
+            <End Role="Recipe" EntitySet="Recipe" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CookBookModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Ingredient">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Info" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Recipes" Relationship="Self.FK_Recipe_Ingredients" FromRole="Ingredients" ToRole="Recipe" />
+        </EntityType>
+        <EntityType Name="MealType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Recipes" Relationship="Self.FK_Recipe_MealType" FromRole="MealType" ToRole="Recipe" />
+        </EntityType>
+        <EntityType Name="Recipe">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PrepTime" Type="Int32" />
+          <Property Name="Serves" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="MealTypeID" Type="Int32" Nullable="false" />
+          <Property Name="IngredientID" Type="Int32" Nullable="false" />
+          <Property Name="StepID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ingredient" Relationship="Self.FK_Recipe_Ingredients" FromRole="Recipe" ToRole="Ingredients" />
+          <NavigationProperty Name="MealType" Relationship="Self.FK_Recipe_MealType" FromRole="Recipe" ToRole="MealType" />
+          <NavigationProperty Name="Step" Relationship="Self.FK_Recipe_Steps" FromRole="Recipe" ToRole="Steps" />
+        </EntityType>
+        <EntityType Name="Step">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Step1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="numStep" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Recipes" Relationship="Self.FK_Recipe_Steps" FromRole="Steps" ToRole="Recipe" />
+        </EntityType>
+        <Association Name="FK_Recipe_Ingredients">
+          <End Role="Ingredients" Type="Self.Ingredient" Multiplicity="1" />
+          <End Role="Recipe" Type="Self.Recipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ingredients">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Recipe">
+              <PropertyRef Name="IngredientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recipe_MealType">
+          <End Role="MealType" Type="Self.MealType" Multiplicity="1" />
+          <End Role="Recipe" Type="Self.Recipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MealType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Recipe">
+              <PropertyRef Name="MealTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recipe_Steps">
+          <End Role="Steps" Type="Self.Step" Multiplicity="1" />
+          <End Role="Recipe" Type="Self.Recipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Steps">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Recipe">
+              <PropertyRef Name="StepID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CookBookEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Ingredients" EntityType="Self.Ingredient" />
+          <EntitySet Name="MealTypes" EntityType="Self.MealType" />
+          <EntitySet Name="Recipes" EntityType="Self.Recipe" />
+          <EntitySet Name="Steps" EntityType="Self.Step" />
+          <AssociationSet Name="FK_Recipe_Ingredients" Association="Self.FK_Recipe_Ingredients">
+            <End Role="Ingredients" EntitySet="Ingredients" />
+            <End Role="Recipe" EntitySet="Recipes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recipe_MealType" Association="Self.FK_Recipe_MealType">
+            <End Role="MealType" EntitySet="MealTypes" />
+            <End Role="Recipe" EntitySet="Recipes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recipe_Steps" Association="Self.FK_Recipe_Steps">
+            <End Role="Steps" EntitySet="Steps" />
+            <End Role="Recipe" EntitySet="Recipes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CookBookModelStoreContainer" CdmEntityContainer="CookBookEntities">
+          <EntitySetMapping Name="Ingredients">
+            <EntityTypeMapping TypeName="CookBookModel.Ingredient">
+              <MappingFragment StoreEntitySet="Ingredients">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Info" ColumnName="Info" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MealTypes">
+            <EntityTypeMapping TypeName="CookBookModel.MealType">
+              <MappingFragment StoreEntitySet="MealType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recipes">
+            <EntityTypeMapping TypeName="CookBookModel.Recipe">
+              <MappingFragment StoreEntitySet="Recipe">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PrepTime" ColumnName="PrepTime" />
+                <ScalarProperty Name="Serves" ColumnName="Serves" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="MealTypeID" ColumnName="MealTypeID" />
+                <ScalarProperty Name="IngredientID" ColumnName="IngredientID" />
+                <ScalarProperty Name="StepID" ColumnName="StepID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Steps">
+            <EntityTypeMapping TypeName="CookBookModel.Step">
+              <MappingFragment StoreEntitySet="Steps">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Step1" ColumnName="Step" />
+                <ScalarProperty Name="numStep" ColumnName="numStep" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -64,19 +64,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Cookbook.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Ingredient.cs">
-      <DependentUpon>Cookbook.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MealType.cs">
-      <DependentUpon>Cookbook.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Recipe.cs">
-      <DependentUpon>Cookbook.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Step.cs">
-      <DependentUpon>Cookbook.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Cookbook.edmx">
