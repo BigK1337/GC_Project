@@ -1,0 +1,82 @@
+﻿@model CookBook.Data.Recipe
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Recipe</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MealType.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MealType.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Step.Step1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Step.Step1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrepTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrepTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Serves)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Serves)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsFav)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsFav)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

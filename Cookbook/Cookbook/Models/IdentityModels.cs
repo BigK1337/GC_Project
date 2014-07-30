@@ -13,5 +13,11 @@ namespace Cookbook.Models
             : base("DefaultConnection")
         {
         }
+
+        public System.Data.Entity.DbSet<CookBook.Data.Recipe> Recipes { get; set; }
+
+        public System.Data.Entity.DbSet<CookBook.Data.MealType> MealTypes { get; set; }
+
+        public System.Data.Entity.DbSet<CookBook.Data.Step> Steps { get; set; }
     }
 }
