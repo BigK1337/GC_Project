@@ -14,15 +14,11 @@ namespace CookBook.Data
     
     public partial class Ingredient
     {
-        public Ingredient()
-        {
-            this.Recipes = new HashSet<Recipe>();
-        }
-    
         public int ID { get; set; }
         public string Name { get; set; }
         public string Info { get; set; }
+        public int RecipeID { get; set; }
     
-        public virtual ICollection<Recipe> Recipes { get; set; }
+        public virtual Recipe Recipe { get; set; }
     }
 }

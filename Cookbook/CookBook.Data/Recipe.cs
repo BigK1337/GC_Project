@@ -14,6 +14,11 @@ namespace CookBook.Data
     
     public partial class Recipe
     {
+        public Recipe()
+        {
+            this.Ingredients = new HashSet<Ingredient>();
+        }
+    
         public int ID { get; set; }
         public string Name { get; set; }
         public Nullable<int> PrepTime { get; set; }
@@ -21,11 +26,11 @@ namespace CookBook.Data
         public string Description { get; set; }
         public byte[] Image { get; set; }
         public int MealTypeID { get; set; }
-        public int IngredientID { get; set; }
         public int StepID { get; set; }
+        public Nullable<bool> IsFav { get; set; }
     
-        public virtual Ingredient Ingredient { get; set; }
         public virtual MealType MealType { get; set; }
         public virtual Step Step { get; set; }
+        public virtual ICollection<Ingredient> Ingredients { get; set; }
     }
 }

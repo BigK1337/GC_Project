@@ -9,9 +9,9 @@
         <EntityTypeShape EntityType="CookBookModel.MealType" Width="1.5" PointX="8.125" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="CookBookModel.Recipe" Width="1.5" PointX="3.875" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CookBookModel.Step" Width="1.5" PointX="6.25" PointY="2.75" IsExpanded="true" />
-        <AssociationConnector Association="CookBookModel.FK_Recipe_Ingredients" ManuallyRouted="false" />
         <AssociationConnector Association="CookBookModel.FK_Recipe_MealType" ManuallyRouted="false" />
         <AssociationConnector Association="CookBookModel.FK_Recipe_Steps" ManuallyRouted="false" />
+        <AssociationConnector Association="CookBookModel.FK_Ingredients_Recipe1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
